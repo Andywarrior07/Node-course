@@ -93,6 +93,11 @@ const listDeleteTaskMessage = async tasks => {
     };
   });
 
+  choices.unshift({
+    value: '0',
+    name: '0. '.green + 'Cancelar',
+  });
+
   const questions = [
     {
       type: 'list',
@@ -118,10 +123,34 @@ const confirm = async message => {
   return ok;
 };
 
+const showChecklist = async tasks => {
+  const choices = tasks.map((task, index) => {
+    const indentifier = `${index + 1}.`.green;
+
+    return {
+      value: task.id,
+      name: `${indentifier} ${task.description}`,
+      checked: !!task.completedAt,
+    };
+  });
+
+  const question = [
+    {
+      type: 'checkbox',
+      name: 'id',
+      message: 'Seleccione',
+      choices,
+    },
+  ];
+  const { id } = await inquirer.prompt(question);
+  return id;
+};
+
 module.exports = {
   inquirerMenu,
   pause,
   readInput,
   listDeleteTaskMessage,
   confirm,
+  showChecklist,
 };

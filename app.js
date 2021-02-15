@@ -6,6 +6,7 @@ const {
   readInput,
   listDeleteTaskMessage,
   confirm,
+  showChecklist,
 } = require('./helpers/inquirer');
 const { save, read } = require('./helpers/file');
 const Tasks = require('./models/tasks');
@@ -37,8 +38,17 @@ const main = async () => {
       case '4':
         tasks.getAllTasksByStatus(false);
         break;
+      case '5':
+        const ids = await showChecklist(tasks.allTasks);
+        tasks.updateTask(ids);
+        break;
       case '6':
         const id = await listDeleteTaskMessage(tasks.allTasks);
+
+        if (id === '0') {
+          break;
+        }
+
         const ok = await confirm('Estas seguro?');
 
         if (!ok) {

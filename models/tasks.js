@@ -50,7 +50,7 @@ class Tasks {
 
       index += 1;
       const number = `${index}`.green;
-      const status = completed ? completedAt : 'Pendiente'.red;
+      const status = completed ? completedAt.green : 'Pendiente'.red;
       console.log(`${number}. ${description} :: ${status}`);
     });
   }
@@ -61,6 +61,26 @@ class Tasks {
     }
 
     delete this._tasks[id];
+  }
+
+  updateTask(ids) {
+    ids.forEach(id => {
+      const task = this._tasks[id];
+
+      if (task.completedAt) {
+        return;
+      }
+
+      task.completedAt = new Date().toISOString();
+    });
+
+    this.allTasks.forEach(task => {
+      if (ids.includes(task.id)) {
+        return;
+      }
+
+      this._tasks[task.id].completedAt = null;
+    });
   }
 }
 
