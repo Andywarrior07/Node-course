@@ -37,6 +37,23 @@ class Tasks {
       console.log(`${number}. ${description} :: ${status}`);
     });
   }
+
+  getAllTasksByStatus(completed = true) {
+    console.log();
+    let index = 0;
+    this.allTasks.forEach(task => {
+      const { description, completedAt } = task;
+
+      if (!!completedAt !== completed) {
+        return;
+      }
+
+      index += 1;
+      const number = `${index}`.green;
+      const status = completed ? completedAt : 'Pendiente'.red;
+      console.log(`${number}. ${description} :: ${status}`);
+    });
+  }
 }
 
 module.exports = Tasks;

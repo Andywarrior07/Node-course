@@ -26,6 +26,10 @@ const main = async () => {
         tasks.getAllTasks();
         break;
       case '3':
+        tasks.getAllTasksByStatus();
+        break;
+      case '4':
+        tasks.getAllTasksByStatus(false);
         break;
     }
 
