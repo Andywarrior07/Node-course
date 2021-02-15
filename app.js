@@ -1,6 +1,7 @@
 require('colors');
 
 const { inquirerMenu, pause, readInput } = require('./helpers/inquirer');
+const { save } = require('./helpers/saveFile');
 const Tasks = require('./models/tasks');
 
 const main = async () => {
@@ -21,6 +22,8 @@ const main = async () => {
       case '3':
         break;
     }
+
+    save(tasks.allTasks);
 
     await pause();
   } while (opt !== '0');
