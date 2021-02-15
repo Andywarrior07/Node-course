@@ -14,8 +14,6 @@ const main = async () => {
     tasks.loadTasks(tasksLoaded);
   }
 
-  await pause();
-
   do {
     opt = await inquirerMenu();
 
@@ -25,7 +23,7 @@ const main = async () => {
         tasks.createTask(description);
         break;
       case '2':
-        console.log(tasks.allTasks);
+        tasks.getAllTasks();
         break;
       case '3':
         break;
