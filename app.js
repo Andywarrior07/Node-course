@@ -16,7 +16,7 @@ const main = async () => {
         tasks.createTask(description);
         break;
       case '2':
-        console.log(tasks._list);
+        console.log(tasks.allTasks);
         break;
       case '3':
         break;
