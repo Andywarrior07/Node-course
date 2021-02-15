@@ -54,6 +54,14 @@ class Tasks {
       console.log(`${number}. ${description} :: ${status}`);
     });
   }
+
+  deleteTask(id) {
+    if (!this._tasks[id]) {
+      return;
+    }
+
+    delete this._tasks[id];
+  }
 }
 
 module.exports = Tasks;
